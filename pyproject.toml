@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tsoeneops-price-list"
+version = "0.1.0"
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "numpy",
+    "pandas",
+    "nicegui"
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-v"
