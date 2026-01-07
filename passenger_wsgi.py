@@ -1,6 +1,10 @@
 import sys
 import os
 
+# Redirect output to log files to prevent Passenger 502 errors from startup noise
+sys.stdout = open("passenger_stdout.log", "a", buffering=1)
+sys.stderr = open("passenger_stderr.log", "a", buffering=1)
+
 # Add 'src' to the path so we can import our modules
 # Assuming this file is in the project root and 'src' is a subdirectory
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
