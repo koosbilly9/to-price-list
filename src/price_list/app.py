@@ -63,7 +63,7 @@ def entry_point(state: State, dao: DaoPanda):
         price_table.on("selection", handle_selection)
 
         # Debugging
-        ic(dir(price_table))
+        # ic(dir(price_table))
 
         ui.input("Search").bind_value(price_table, "filter").props("clearable")
 
