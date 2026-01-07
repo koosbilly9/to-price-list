@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/towebcoz/tsoeneops-price-list/
+    - export DEPLOYPATH=/home/towebcoz/to-price-list/
     - /bin/cp -R * $DEPLOYPATH
