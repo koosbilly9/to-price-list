@@ -8,7 +8,7 @@ from icecream import ic
 
 def entry_point(state: State, dao: DaoPanda):
     # On Start
-    dao.load_amrod_price_list()
+    # dao.load_amrod_price_list() # Defer loading to prevent startup timeout
     app.add_static_files("/images", "src/images")
 
     # Other Functions
@@ -88,6 +88,14 @@ def entry_point(state: State, dao: DaoPanda):
             ui.tooltip(
                 f"source: ../{state.file_location} ({state.file_mod_time}) {state.file_size}"
             ).classes("text-lg")
+
+        def manual_load():
+            ui.notify("Loading data... please wait.")
+            dao.load_amrod_price_list()
+            main_table.refresh()
+            ui.notify("Data loaded!")
+
+        ui.button("Load Data", on_click=manual_load).classes("m-2 p-2 bg-orange-500")
 
     # Body
     with ui.card(align_items="start").classes("w-full ") as card_main:
