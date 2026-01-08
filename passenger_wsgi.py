@@ -39,17 +39,23 @@ try:
     state = State()
     dao = DaoPanda(state)
 
-    log("Loading application data (entry_point)...")
-    start_time = time.time()
+    # log("Loading application data (entry_point)...")
+    # start_time = time.time()
 
     # Load the application content (routes, UI, etc.)
     # This might take a few seconds as it reads the Excel file
-    entry_point(state, dao)
+    # entry_point(state, dao)
 
-    elapsed = time.time() - start_time
-    log(
-        f"Data verification: Loaded {len(dao.panda_tsoeneops_price_list)} rows in {elapsed:.2f}s"
-    )
+    # elapsed = time.time() - start_time
+    # log(
+    #     f"Data verification: Loaded {len(dao.panda_tsoeneops_price_list)} rows in {elapsed:.2f}s"
+    # )
+
+    from nicegui import ui
+
+    @ui.page("/")
+    def index():
+        ui.label("Minimal NiceGUI Test - Success!")
 
     # 4. Create WSGI Application
     # Wrap the ASGI app (NiceGUI) with ASGIMiddleware to make it WSGI compatible
