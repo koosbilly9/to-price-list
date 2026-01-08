@@ -114,18 +114,17 @@ class DaoPanda:
                 self.state.reward_tier,
             }
             if required_cols.issubset(df.columns):
-                df["sheet name"] = sheet
-                all_dfs.append(
-                    df[
-                        [
-                            "Simple Code",
-                            "Description",
-                            "Category",
-                            "sheet name",
-                            self.state.reward_tier,
-                        ]
+                # Create a copy to avoid SettingWithCopyWarning when modifying
+                df_subset = df[
+                    [
+                        "Simple Code",
+                        "Description",
+                        "Category",
+                        self.state.reward_tier,
                     ]
-                )
+                ].copy()
+                df_subset["sheet name"] = sheet
+                all_dfs.append(df_subset)
             else:
                 missing = required_cols - set(df.columns)
                 print(f"  SKIPPING {sheet}: Missing columns {missing}")
