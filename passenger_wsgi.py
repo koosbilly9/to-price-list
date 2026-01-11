@@ -25,6 +25,10 @@ try:
     except ImportError as e:
         raise ImportError(f"Failed to import infrastructure (a2wsgi/nicegui): {e}")
 
+    # FORCE HTTP POLLING (Fix for Passenger/LiteSpeed timeouts)
+    # Shared hosting kills persistent WebSockets, so we force standard HTTP requests
+    app.config.socket_io_js_transports = ["polling"]
+
     try:
         from price_list.app import entry_point
         from price_list.state import State
